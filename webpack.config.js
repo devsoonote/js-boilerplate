@@ -2,12 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.ts',
     mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Output Management'
-        })
+        }),
     ],
     output: {
         filename: 'main.js',
@@ -25,6 +25,11 @@ module.exports = {
                 type: 'asset/resource',
             },
             {
+                test: /\.tsx$/i,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
                 test: /\.m?.js/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
@@ -36,6 +41,9 @@ module.exports = {
                 }
             }
         ],
+    },
+    resolve: {
+        extensions: ['.ts', '.js']
     },
     devServer: {
         static: {
