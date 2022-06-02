@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
     entry: './src/index.ts',
@@ -8,6 +9,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Output Management'
         }),
+        new ESLintWebpackPlugin(options)
     ],
     output: {
         filename: 'main.js',
@@ -39,7 +41,7 @@ module.exports = {
                         plugins: ['@babel/plugin-transform-runtime']
                     }
                 }
-            }
+            },
         ],
     },
     resolve: {
